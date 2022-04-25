@@ -1,0 +1,38 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: objectOwnership
+    network: mainnet
+    source:
+      address: "0x7cD44a3C9696185BAC374F0Cd3018F4b24986cb0"
+      abi: objectOwnership
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - LogSetAuthority
+        - RoleAdded
+        - RoleRemoved
+        - Transfer
+        - Approval
+        - ApprovalForAll
+      abis:
+        - name: objectOwnership
+          file: ./abis/objectOwnership.json
+      eventHandlers:
+        - event: LogSetAuthority(indexed address)
+          handler: handleLogSetAuthority
+        - event: RoleAdded(indexed address,string)
+          handler: handleRoleAdded
+        - event: RoleRemoved(indexed address,string)
+          handler: handleRoleRemoved
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+      file: ./src/mapping.ts
