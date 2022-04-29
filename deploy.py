@@ -13,7 +13,7 @@ deploy_config = {
             "equipment": {
                 "address": "0x366694a6Af1C3aBe3AFedC24771BF3DdB0f9292E"
             },
-            "SUBGRAPH_NAME": "perrorone/nftself",
+            "SUBGRAPH_NAME": "evolutionlandorg/nft-mumbai",
         }
     },
     "production":{
@@ -27,7 +27,7 @@ deploy_config = {
             "equipment": {
                 "address": "0x444E4319dC2Db7E030A641682459044DD3D83D76"
             },
-            "SUBGRAPH_NAME": "perrorone/nftself",
+            "SUBGRAPH_NAME": "evolutionlandorg/nft-matic",
         }
     }
 }
