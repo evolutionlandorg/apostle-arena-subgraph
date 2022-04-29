@@ -1,38 +1,67 @@
-specVersion: 0.0.1
+dataSources:
+- kind: ethereum/contract
+  mapping:
+    abis:
+    - file: ./abis/objectOwnership.json
+      name: objectOwnership
+    apiVersion: 0.0.4
+    entities:
+    - Transfer
+    eventHandlers:
+    - event: Transfer(indexed address,indexed address,indexed uint256)
+      handler: handleTransfer
+    file: ./src/objectOwnership.ts
+    kind: ethereum/events
+    language: wasm/assemblyscript
+  name: objectOwnership
+  network: mumbai
+  source:
+    abi: objectOwnership
+    address: '0x7cD44a3C9696185BAC374F0Cd3018F4b24986cb0'
+    startBlock: 17158784
+- kind: ethereum/contract
+  mapping:
+    abis:
+    - file: ./abis/apostle.json
+      name: apostle
+    apiVersion: 0.0.4
+    entities:
+    - Birth
+    eventHandlers:
+    - event: Birth(indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+      handler: handleBirth
+    file: ./src/objectOwnership.ts
+    kind: ethereum/events
+    language: wasm/assemblyscript
+  name: apostle
+  network: mumbai
+  source:
+    abi: apostle
+    address: '0x6c74a72444048A8588dEBeb749Ee60DB842aD90f'
+    startBlock: 17158784
+- kind: ethereum/contract
+  mapping:
+    abis:
+    - file: ./abis/craftBase.json
+      name: craftBase
+    apiVersion: 0.0.4
+    entities:
+    - Crafted
+    - Enchanced
+    eventHandlers:
+    - event: Crafted(address,uint256,uint256,uint256,uint256,uint256)
+      handler: handleCrafted
+    - event: Enchanced(uint256,uint8,uint256)
+      handler: handleEnchanced
+    file: ./src/equipment.ts
+    kind: ethereum/events
+    language: wasm/assemblyscript
+  name: equipment
+  network: mumbai
+  source:
+    abi: craftBase
+    address: '0x366694a6Af1C3aBe3AFedC24771BF3DdB0f9292E'
+    startBlock: 17158784
 schema:
   file: ./schema.graphql
-dataSources:
-  - kind: ethereum/contract
-    name: objectOwnership
-    network: mainnet
-    source:
-      address: "0x7cD44a3C9696185BAC374F0Cd3018F4b24986cb0"
-      abi: objectOwnership
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.2
-      language: wasm/assemblyscript
-      entities:
-        - LogSetAuthority
-        - RoleAdded
-        - RoleRemoved
-        - Transfer
-        - Approval
-        - ApprovalForAll
-      abis:
-        - name: objectOwnership
-          file: ./abis/objectOwnership.json
-      eventHandlers:
-        - event: LogSetAuthority(indexed address)
-          handler: handleLogSetAuthority
-        - event: RoleAdded(indexed address,string)
-          handler: handleRoleAdded
-        - event: RoleRemoved(indexed address,string)
-          handler: handleRoleRemoved
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-        - event: Approval(indexed address,indexed address,indexed uint256)
-          handler: handleApproval
-        - event: ApprovalForAll(indexed address,indexed address,bool)
-          handler: handleApprovalForAll
-      file: ./src/mapping.ts
+specVersion: 0.0.2

@@ -1,5 +1,34 @@
-type ExampleEntity @entity {
+
+enum tokenType {
+  Land
+  Apostle
+  MirrorKitty
+  Drill
+  Other
+}
+
+type evoApostle @entity {
   id: ID!
-  count: BigInt!
-  authority: Bytes! # address
+  owner: String!
+  nftType: tokenType!
+  lastTxHash: String!
+  birthTime: BigInt
+  talents: String
+  genes: String
+  generation: String
+  matronId: String
+  sireId: String
+}
+
+type evoEquipment @entity {
+  id: ID!
+  owner: String!
+  object: Int!
+  rarity: Int!
+  level: Int!
+  prefer: Int!
+  apostleTokenId: String
+  Slot: Int
+  # 原主人，给使徒装备后owner会变
+  OriginOwner: String
 }
