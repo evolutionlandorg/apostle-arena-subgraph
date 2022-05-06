@@ -13,7 +13,7 @@ export function handleCrafted(event: Crafted): void {
     }
     log.info("new equipment {}", [id])
     equipment.owner = event.params.to.toHex()
-    equipment.OriginOwner = equipment.owner
+    equipment.originOwner = equipment.owner
     equipment.rarity = event.params.rarity.toI32()
     equipment.level = 0
     equipment.prefer = event.params.prefer.toI32()

@@ -28,7 +28,7 @@ type evoEquipment @entity {
   level: Int!
   prefer: Int!
   apostleTokenId: String
-  Slot: Int
+  slot: Int
   # 原主人，给使徒装备后owner会变
-  OriginOwner: String
+  originOwner: String
 }

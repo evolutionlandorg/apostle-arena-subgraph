@@ -13,7 +13,7 @@ deploy_config = {
             "equipment": {
                 "address": "0x366694a6Af1C3aBe3AFedC24771BF3DdB0f9292E"
             },
-            "SUBGRAPH_NAME": "evolutionlandorg/nft-mumbai",
+            "SUBGRAPH_NAME": "evolutionlandorg/arenanftmumbai",
         }
     },
     "production":{
@@ -27,7 +27,7 @@ deploy_config = {
             "equipment": {
                 "address": "0x444E4319dC2Db7E030A641682459044DD3D83D76"
             },
-            "SUBGRAPH_NAME": "evolutionlandorg/nft-matic",
+            "SUBGRAPH_NAME": "evolutionlandorg/arenanftmatic",
         }
     }
 }
@@ -35,15 +35,23 @@ def is_production():
     return os.getenv("DEPLOY_MODE") == "production"
 
 config =  deploy_config["production"] if is_production() else deploy_config["dev"]
+subgraph_config_path = "./subgraph.yaml"
+config_data = open(subgraph_config_path, "r").read()
+subgraph_config = yaml.load(config_data)
 
-subgraph_config = yaml.load(open("./subgraph.yaml", "r").read())
-print(subgraph_config)
+all_chain = os.getenv("chain").split(",")
+
 for chain, conf in config.items():
+    if all_chain and chain not in all_chain:
+        pass
     for index, data_sources in enumerate(subgraph_config["dataSources"]):
         if data_sources["name"] in conf:
             subgraph_config["dataSources"][index]["source"]["address"] = conf[data_sources["name"]]["address"]
             subgraph_config["dataSources"][index]["network"] = chain
-    with open("./subgraph.yaml", "w", encoding="utf-8") as f:
+    with open(subgraph_config_path, "w", encoding="utf-8") as f:
         f.write(yaml.dump(subgraph_config))
     os.system("graph codegen && graph build")
     os.system("graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ {}".format(conf["SUBGRAPH_NAME"]))
+
+with open(subgraph_config_path, "w") as f:
+    f.write(config_data)

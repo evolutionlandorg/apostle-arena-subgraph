@@ -264,17 +264,17 @@ export class evoEquipment extends Entity {
     }
   }
 
-  get Slot(): i32 {
-    let value = this.get("Slot");
+  get slot(): i32 {
+    let value = this.get("slot");
     return value.toI32();
   }
 
-  set Slot(value: i32) {
-    this.set("Slot", Value.fromI32(value));
+  set slot(value: i32) {
+    this.set("slot", Value.fromI32(value));
   }
 
-  get OriginOwner(): string | null {
-    let value = this.get("OriginOwner");
+  get originOwner(): string | null {
+    let value = this.get("originOwner");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -282,11 +282,11 @@ export class evoEquipment extends Entity {
     }
   }
 
-  set OriginOwner(value: string | null) {
+  set originOwner(value: string | null) {
     if (value === null) {
-      this.unset("OriginOwner");
+      this.unset("originOwner");
     } else {
-      this.set("OriginOwner", Value.fromString(value as string));
+      this.set("originOwner", Value.fromString(value as string));
     }
   }
 }
