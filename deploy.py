@@ -39,7 +39,7 @@ subgraph_config_path = "./subgraph.yaml"
 config_data = open(subgraph_config_path, "r").read()
 subgraph_config = yaml.load(config_data)
 
-all_chain = os.getenv("chain").split(",")
+all_chain = os.getenv("chain").split(",") if os.getenv("chain") else []
 
 for chain, conf in config.items():
     if all_chain and chain not in all_chain:
