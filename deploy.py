@@ -13,7 +13,19 @@ deploy_config = {
             "equipment": {
                 "address": "0x366694a6Af1C3aBe3AFedC24771BF3DdB0f9292E"
             },
-            "SUBGRAPH_NAME": "evolutionlandorg/arenanftmumbai",
+            "SUBGRAPH_NAME": "evolutionlandorg/arena-polygon-dev",
+        },
+        "crab": {
+            "objectOwnership": {
+                "address": "0x3788df4fdC026f5Ea91a333fCf7CeD7a52c92471",
+            },
+            "apostle": {
+                "address": "0xE94df9BC3cdB5b455Be4157D9Bed0B11D6DFC89e"
+            },
+            "equipment": {
+                "address": "0x12225Fa4a20b13ccA0773E1D5f08BbC91f16f927"
+            },
+            "SUBGRAPH_NAME": "evolutionlandorg/arena-crab-dev",
         }
     },
     "production":{
@@ -27,7 +39,7 @@ deploy_config = {
             "equipment": {
                 "address": "0x444E4319dC2Db7E030A641682459044DD3D83D76"
             },
-            "SUBGRAPH_NAME": "evolutionlandorg/arenanftmatic",
+            "SUBGRAPH_NAME": "evolutionlandorg/arena-polygon",
         }
     }
 }
